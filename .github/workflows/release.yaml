@@ -16,7 +16,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        export IMAGE=docker.pkg.github.com/caos/boom/boom
+        export IMAGE=docker.pkg.github.com/caos/argo-secrets/argocd
         export TAG_LATEST=${IMAGE}:latest
         docker build --tag ${TAG_LATEST} --file ./Dockerfile .
 
