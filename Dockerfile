@@ -1,5 +1,5 @@
 # patch argocd repo server to be able to decrypt secrets
-FROM argoproj/argocd:latest
+FROM argoproj/argocd:v1.4.0
 
 # Switch to root for the ability to perform install
 USER root
