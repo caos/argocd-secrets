@@ -1,5 +1,5 @@
 # patch argocd repo server to be able to decrypt secrets
-FROM argoproj/argocd:v1.4.0
+FROM argoproj/argocd:v1.4.2
 
 # Switch to root for the ability to perform install
 USER root
@@ -17,6 +17,8 @@ RUN apt-get update && \
     mv ./gopass-$GOPASS_VERSION-linux-amd64/gopass /usr/local/bin &&\
     rm -rf ./gopass-$GOPASS_VERSION-linux-amd64* &&\
     chmod +x /usr/local/bin/gopass
+
+COPY ./scripts/* /home/argocd/
 
 # Switch back to non-root user
 USER argocd
