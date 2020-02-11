@@ -46,7 +46,7 @@ done
 
 function clone_remote_gopass_store {
 # checkout the customers passtore
-echo gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli # &>> $LOGFILE
+gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli  &>> $LOGFILE
 }
 
 
