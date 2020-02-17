@@ -11,7 +11,7 @@ set -e
 
 function initialize_ssh {
 #initialize ssh to checkout secret store
-mkdir $HOME/.ssh
+mkdir -p $HOME/.ssh
 cp ssh-key/identity $HOME/.ssh/id_rsa
 chmod 700 $HOME/.ssh
 chmod 600 $HOME/.ssh/id_rsa
