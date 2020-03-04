@@ -2,15 +2,13 @@
 #example: initialize_gopass.sh git@github.com:<YOURORGANIZATION>/<YOURSECRETSTORE> <YOURSECRETSTORE>
 
 REPOSITORY_LIST_JSON=$1
-SSHFILE=$2
-GPGFILE=$3
+GPGFILE=$2
 LOGFILE=gopass.log
 
 GOPASS_VERSION="1.8.6"
 
 # Script for initial secret and key declaration for gpg/gopass
 set -e
-
 
 function import_and_trust_gpg-key {
 # import gpg keys to keystore
