@@ -11,11 +11,6 @@ GOPASS_VERSION="1.8.6"
 # Script for initial secret and key declaration for gpg/gopass
 set -e
 
-function initialize_ssh {
-#initialize ssh to checkout secret store
-chmod 700 $HOME/.ssh
-chmod 600 $HOME/.ssh/${SSHFILE}
-}
 
 function import_and_trust_gpg-key {
 # import gpg keys to keystore
@@ -50,7 +45,6 @@ gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli  &>> $LOGFILE
 }
 
 
-initialize_ssh
 import_and_trust_gpg-key
 initialize_gopass_store
 unmarshall_json_and_clone_remote
