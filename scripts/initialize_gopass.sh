@@ -3,6 +3,7 @@
 
 REPOSITORY_LIST_JSON=$1
 GPGFILE=$2
+SSHFILE=$3
 LOGFILE=gopass.log
 
 GOPASS_VERSION="1.8.6"
@@ -10,9 +11,18 @@ GOPASS_VERSION="1.8.6"
 # Script for initial secret and key declaration for gpg/gopass
 set -e
 
+
+function initialize_ssh {	
+#initialize ssh to checkout secret store	
+mkdir -p $HOME/.ssh	
+cp $SSHFILE $HOME/.ssh/id_rsa
+chmod 700 $HOME/.ssh	
+chmod 600 $HOME/.ssh/id_rsa
+}
+
 function import_and_trust_gpg-key {
 # import gpg keys to keystore
-gpg --import $HOME/gpg-import/${GPGFILE} &>> $LOGFILE
+gpg --import ${GPGFILE} &>> $LOGFILE
 # trust imported keys
 for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u &>> $LOGFILE); do  echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key $fpr trust &>> $LOGFILE ; done
 }
@@ -42,7 +52,7 @@ function clone_remote_gopass_store {
 gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli  &>> $LOGFILE
 }
 
-
+initialize_ssh
 import_and_trust_gpg-key
 initialize_gopass_store
 unmarshall_json_and_clone_remote
