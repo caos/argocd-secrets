@@ -2,8 +2,8 @@
 #example: initialize_gopass.sh git@github.com:<YOURORGANIZATION>/<YOURSECRETSTORE> <YOURSECRETSTORE>
 
 REPOSITORY_LIST_JSON=$1
-GPGFILE=$2
-SSHFILE=$3
+GPGFOLDER=$2
+SSHFOLDER=$3
 LOGFILE=gopass.log
 
 GOPASS_VERSION="1.8.6"
@@ -15,14 +15,14 @@ set -e
 function initialize_ssh {	
 #initialize ssh to checkout secret store	
 mkdir -p $HOME/.ssh	
-cp $SSHFILE $HOME/.ssh/id_rsa
+cp $SSHFOLDER/* $HOME/.ssh
 chmod 700 $HOME/.ssh	
-chmod 600 $HOME/.ssh/id_rsa
+chmod 600 $HOME/.ssh/*
 }
 
 function import_and_trust_gpg-key {
 # import gpg keys to keystore
-gpg --import ${GPGFILE} &>> $LOGFILE
+for gpgfile in $(ls ${GPGFOLDER}); do gpg --import ${GPGFOLDER}/${gpgfile} &>> $LOGFILE; done
 # trust imported keys
 for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u &>> $LOGFILE); do  echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key $fpr trust &>> $LOGFILE ; done
 }
