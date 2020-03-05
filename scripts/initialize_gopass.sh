@@ -21,15 +21,15 @@ chmod 600 $HOME/.ssh/*
 
 function import_and_trust_gpg-key {
 # import gpg keys to keystore
-for gpgfile in $(ls ${GPGFOLDER}); do gpg --import ${GPGFOLDER}/${gpgfile} ; done
+for gpgfile in $(ls ${GPGFOLDER}); do gpg --import ${GPGFOLDER}/${gpgfile} &>> $LOGFILE ; done
 # trust imported keys
-for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u); do  echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key $fpr trust ; done
+for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u &>> $LOGFILE); do  echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key $fpr trust &>> $LOGFILE ; done
 }
 
 function  initialize_gopass_store {
 #init gopass witht the technical gpg user
 # e.g.: gopass  --yes init --crypto gpg-id <YOURID> --rcs gitcli
-gopass  --yes init --crypto gpg-id $(gpg --list-keys --with-colons  | awk -F: '/pub:/ {print $5}') --rcs gitcli 
+gopass  --yes init --crypto gpg-id $(gpg --list-keys --with-colons  | awk -F: '/pub:/ {print $5}') --rcs gitcli &>> $LOGFILE
 }
 
 function unmarshall_json_and_clone_remote {
@@ -48,7 +48,7 @@ done
 
 function clone_remote_gopass_store {
 # checkout the customers passtore
-gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli
+gopass --yes clone $SECRET_REPOSITORY $SECRET_STORE --sync gitcli &>> $LOGFILE
 }
 
 initialize_ssh
