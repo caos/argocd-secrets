@@ -18,6 +18,8 @@ mkdir -p $HOME/.ssh
 cp $SSHFOLDER/* $HOME/.ssh
 chmod 700 $HOME/.ssh	
 chmod 600 $HOME/.ssh/*
+eval "$(ssh-agent -s)"
+ssh-add -k $HOME/.ssh/*
 }
 
 function import_and_trust_gpg-key {
