@@ -11,7 +11,6 @@ GOPASS_VERSION="1.8.6"
 # Script for initial secret and key declaration for gpg/gopass
 set -e
 
-
 function initialize_ssh {	
 #initialize ssh to checkout secret store	
 mkdir -p $HOME/.ssh	
@@ -19,7 +18,7 @@ cp $SSHFOLDER/* $HOME/.ssh
 chmod 700 $HOME/.ssh	
 chmod 600 $HOME/.ssh/* 
 eval "$(ssh-agent -s)" &>> $LOGFILE
-ssh-add -k $HOME/.ssh/* &>> $LOGFILE
+for sshfile in $(ls ${SSHFOLDER}); do ssh-add -k $HOME/.ssh/$sshfile &>> $LOGFILE; done
 }
 
 function import_and_trust_gpg-key {
