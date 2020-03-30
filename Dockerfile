@@ -21,5 +21,7 @@ RUN apt-get update && \
 
 COPY ./scripts/* /home/argocd/
 
+RUN apt-get install git git-man libcurl3-gnutls libidn2-0
+
 # Switch back to non-root user
 USER argocd
