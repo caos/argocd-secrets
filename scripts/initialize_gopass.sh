@@ -16,9 +16,8 @@ function initialize_ssh {
 mkdir -p $HOME/.ssh	
 cp $SSHFOLDER/* $HOME/.ssh
 chmod 700 $HOME/.ssh	
-chmod 600 $HOME/.ssh/* 
-eval "$(ssh-agent -s)" &>> $LOGFILE
-for sshfile in $(ls ${SSHFOLDER}); do ssh-add -k $HOME/.ssh/$sshfile &>> $LOGFILE; done
+chmod 600 $HOME/.ssh/*
+for sshfile in $(ls ${SSHFOLDER}); do echo "IdentityFile ~/.ssh/${sshfile}" >> ~/.ssh/config; done
 }
 
 function import_and_trust_gpg-key {
