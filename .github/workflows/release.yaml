@@ -19,7 +19,7 @@ jobs:
       with:
         image-reference: "localbuild/image:latest"
         dockerfile-path: "./Dockerfile"
-        fail-build: true
+        fail-build: false
     - name: anchore inline scan JSON results
       run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
     - name: Create Version
