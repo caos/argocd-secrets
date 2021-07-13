@@ -48,7 +48,7 @@ jobs:
           echo "::set-output name=version::${VERSION}"
 
   argocd-image:
-    name: Build ZITADEL
+    name: Build ARGO
     needs: refs
     runs-on: ubuntu-18.04
     steps:
@@ -87,10 +87,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PATN }}
           registry: ${{ env.REGISTRY }}
-      - name: Docker Pull ZITADEL Image
+      - name: Docker Pull Image
         run: docker pull $REGISTRY/$GITHUB_REPOSITORY:${{ needs.refs.outputs.sha_short }}
 
-    - name: Run Semantic Release
+      - name: Run Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v2
         with:
