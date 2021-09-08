@@ -1,4 +1,5 @@
 # patch argocd repo server to be able to decrypt secrets
+#force release
 FROM argoproj/argocd@sha256:8d1d58ef963f615da97e0b2c54dbe243801d5e7198b98393ab36b7a5768f72a4
 
 # Switch to root for the ability to perform install
