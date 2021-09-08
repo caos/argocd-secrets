@@ -3,7 +3,7 @@ FROM argoproj/argocd@sha256:8d1d58ef963f615da97e0b2c54dbe243801d5e7198b98393ab36
 
 # Switch to root for the ability to perform install
 USER root
-ARG GOPASS_VERSION="1.12.8"
+ARG GOPASS_VERSION="v1.12.8"
 # Install tools needed for your repo-server to retrieve & decrypt secrets, render manifests 
 # (e.g. curl, awscli, gpg, sops)
 RUN apt-get update && \
