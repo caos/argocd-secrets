@@ -30,7 +30,7 @@ for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sor
 function  initialize_gopass_store {
 #init gopass witht the technical gpg user
 # e.g.: gopass  --yes init --crypto gpg-id <YOURID> --rcs gitcli
-gopass  --yes init --crypto gpg-id $(gpg --list-keys --with-colons  | awk -F: '/pub:/ {print $5}') --rcs gitcli &>> $LOGFILE
+gopass  --yes init --crypto gpg-id $(gpg --list-keys --with-colons  | awk -F: '/pub:/ {print $5}') gitcli &>> $LOGFILE
 }
 
 function unmarshall_json_and_clone_remote {
