@@ -1,6 +1,6 @@
 # patch argocd repo server to be able to decrypt secrets
 #force release 
-FROM argoproj/argocd@sha256:8d1d58ef963f615da97e0b2c54dbe243801d5e7198b98393ab36b7a5768f72a4
+FROM quay.io/argoproj/argocd:v2.1.1
 
 # Switch to root for the ability to perform install
 USER root
@@ -25,4 +25,4 @@ COPY ./scripts/* /home/argocd/
 RUN apt-get install git git-man libcurl3-gnutls libidn2-0
 
 # Switch back to non-root user
-USER 999
+USER argocd
