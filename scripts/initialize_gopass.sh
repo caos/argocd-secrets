@@ -8,12 +8,14 @@ LOGFILE=/tmp/gopass.log
 
 GOPASS_VERSION="1.8.6"
 
+export HOME=/home/argocd
+
 # Script for initial secret and key declaration for gpg/gopass
 set -e
 
 function initialize_ssh {	
 #initialize ssh to checkout secret store	
-mkdir -p $HOME/.ssh	
+#mkdir -p $HOME/.ssh	
 cp $SSHFOLDER/* $HOME/.ssh
 #chmod 700 $HOME/.ssh	
 chmod 600 $HOME/.ssh/*
