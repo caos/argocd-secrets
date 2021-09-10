@@ -15,7 +15,7 @@ function initialize_ssh {
 #initialize ssh to checkout secret store	
 mkdir -p $HOME/.ssh	
 cp $SSHFOLDER/* $HOME/.ssh
-chmod 700 $HOME/.ssh	
+#chmod 700 $HOME/.ssh	
 chmod 600 $HOME/.ssh/*
 for sshfile in $(ls ${SSHFOLDER}); do echo "IdentityFile ~/.ssh/${sshfile}" >> ~/.ssh/config; done
 }
