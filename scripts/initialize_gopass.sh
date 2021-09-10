@@ -8,8 +8,6 @@ LOGFILE=/tmp/gopass.log
 
 GOPASS_VERSION="1.8.6"
 
-export HOME=/home/argocd
-
 # Script for initial secret and key declaration for gpg/gopass
 set -e
 
