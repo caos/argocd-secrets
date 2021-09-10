@@ -1,5 +1,5 @@
 # patch argocd repo server to be able to decrypt secrets
-#force release  
+#force release 
 FROM quay.io/argoproj/argocd:v2.1.1
 
 # Switch to root for the ability to perform install
