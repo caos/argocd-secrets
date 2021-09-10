@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LOGFILE=gopass.log
+LOGFILE=/tmp/gopass.log
 
 function initialize_ssh {
     eval "$(ssh-agent -s)" &>> ${LOGFILE}
